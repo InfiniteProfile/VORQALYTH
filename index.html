@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080711">
+  <meta name="description" content="VORQALYTH — an endless universe of original identities.">
+  <title>VORQALYTH — Infinite Realms</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="VORQALYTH home"><span class="brand-mark">V</span><span>VORQALYTH</span></a>
+    <div class="top-actions">
+      <div class="search-wrap">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <input id="searchInput" type="search" autocomplete="off" placeholder="Search identities, IDs, origins…" aria-label="Search profiles">
+        <button id="clearSearch" class="clear-search" aria-label="Clear search" hidden>×</button>
+      </div>
+      <button id="searchButton" class="icon-button" aria-label="Focus search">⌕</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow"><span class="pulse"></span> THE REALM IS ACTIVE</div>
+      <h1>INFINITE REALMS.<br><span>ENDLESS IDENTITIES.</span></h1>
+      <p class="hero-copy">Beyond every horizon, another existence awaits discovery.</p>
+      <div class="hero-stats">
+        <div><strong id="createdCount">300</strong><span>IDENTITIES PREPARED</span></div>
+        <i></i>
+        <div><strong>∞</strong><span>REALMS UNBOUND</span></div>
+      </div>
+    </section>
+
+    <section class="section-heading">
+      <div><span class="section-kicker">DISCOVER THE UNKNOWN</span><h2>Identity archive</h2></div>
+      <div class="live-label"><span class="pulse"></span> CONTINUOUSLY EXPANDING</div>
+    </section>
+
+    <div id="searchStatus" class="search-status" role="status" hidden></div>
+    <section id="profileGrid" class="profile-grid" aria-label="Infinite profile archive"></section>
+    <div id="scrollSentinel" aria-hidden="true"></div>
+    <div id="loadingStatus" class="loading-status" role="status"><span class="loader"></span><span>Preparing the next horizon</span></div>
+  </main>
+
+  <div id="detailLayer" class="detail-layer" hidden>
+    <div class="detail-backdrop" data-close="true"></div>
+    <article class="detail-panel" role="dialog" aria-modal="true" aria-labelledby="detailName">
+      <button id="closeDetail" class="close-button" aria-label="Close profile">×</button>
+      <div id="detailArtwork" class="detail-artwork"></div>
+      <div class="detail-content">
+        <div class="detail-overline">VORQALYTH IDENTITY FILE <span id="detailId"></span></div>
+        <h2 id="detailName"></h2><p id="detailClassification" class="detail-class"></p>
+        <p id="detailBio" class="detail-bio"></p>
+        <div class="detail-facts">
+          <div><span>ORIGIN</span><strong id="detailOrigin"></strong></div>
+          <div><span>PERSONALITY</span><strong id="detailPersonality"></strong></div>
+          <div><span>ABILITIES</span><strong id="detailAbilities"></strong></div>
+          <div><span>CHARACTERISTICS</span><strong id="detailTraits"></strong></div>
+        </div>
+        <div class="detail-note">Every identity is generated deterministically from its permanent decimal ID.</div>
+      </div>
+    </article>
+  </div>
+  <footer class="minimal-footer"><span>VORQALYTH</span><span>NO EDGE. NO END.</span></footer>
+  <script src="script.js"></script>
+</body>
+</html>
