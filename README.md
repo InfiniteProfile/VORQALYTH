@@ -1,31 +1,23 @@
-# VORQALYTH
+# VORQALYTH — Infinite Realms. Endless Identities.
 
-**INFINITE REALMS. ENDLESS IDENTITIES. LIMITLESS DISCOVERIES.**
-
-A static, client-side fictional identity archive built with HTML, CSS and vanilla JavaScript.
-
-## Files
-- `index.html` — page structure
-- `style.css` — responsive cosmic interface
-- `script.js` — deterministic profile generation, search, detail view and progressive rendering
+A static, dependency-free infinite profile universe (HTML + CSS + vanilla JS).
 
 ## Run locally
-Open `index.html` in a modern browser. No build step, server, API key, account or database is required.
+Open `index.html` in any modern browser, or serve the folder: `python3 -m http.server 8000` then visit http://localhost:8000
 
-## Publish with GitHub Pages
-1. Create a repository.
-2. Upload `index.html`, `style.css`, `script.js`, and this README to the repository root.
-3. Open **Settings → Pages**.
-4. Choose **Deploy from a branch**, select the default branch and `/ (root)`, then save.
-5. Open the published Pages URL after deployment finishes.
+## Publish (GitHub Pages)
+1. Create a repository and upload `index.html`, `style.css`, `script.js` to the root.
+2. Settings → Pages → Deploy from branch → `main` / root.
+3. Visit the URL GitHub gives you. Any static host (Netlify, Cloudflare Pages, etc.) also works: just upload the three files.
 
-The site is static and also works on compatible static hosting providers.
+## How it works
+- **Profiles are pure functions of their ID.** `gen(BigInt id)` seeds a PRNG from the decimal ID string, so a profile is identical on every visit and device. Nothing is stored or fetched.
+- **IDs** are BigInt end to end and displayed in full (tested to 200 digits).
+- **Names are unique and invertible.** Full name = generated given name + a bijective base-128 syllable code of the ID. This makes exact-name search deterministic for any ID; names for very large IDs are longer (about one syllable per 7 bits of ID).
+- **Infinite feed.** Batches of 300 contiguous IDs are appended near the bottom. A batch is prepared once you are ~100 cards in. The DOM keeps at most ~600 cards: cards far off-screen are removed, and scroll position is compensated so the visible card never moves. Scrolling up re-creates earlier IDs. This avoids browser scroll-height limits. Triggers are a scroll listener, resize and a 1-second watchdog; failed batches are retried automatically. There is no end, no Load More, no footer, and no programmatic scrolling.
+- **Artwork** is procedural inline SVG, created only when a card nears the viewport.
+- **Search** (magnifier icon): exact ID (any length), exact name, partial name, species, personality and other text. Text search scans IDs from 1 upward in short time slices and continues as you scroll the results, so it is open-ended rather than limited to a fixed set. It runs in its own overlay and never interrupts the feed.
+- **Profile pages** open as a detail view at `#/p/<id>` (shareable, Back-button friendly, Prev/Next buttons).
 
-## How identities work
-Each identity is derived deterministically from its positive decimal ID. IDs are parsed as decimal strings and profile details are generated from the exact ID text, avoiding JavaScript `Number` precision loss for exact-ID lookups. The archive prepares an initial set of 300 and expands in batches as the user explores. Artwork is generated locally as lightweight SVG; no external image service is required.
-
-## Notes about limits
-A static browser application cannot guarantee literally unbounded storage, runtime, or scroll height: browsers and devices impose finite memory and layout limits. This implementation uses a bounded rendered window and deterministic regeneration to reduce DOM and memory pressure. Exact numeric-ID lookup can generate a profile directly for an arbitrarily long decimal ID. Text search scans a bounded portion of the prepared archive to keep low-end phones responsive.
-
-## Customization
-Edit the arrays near the top of `script.js` to add original naming fragments, classifications, origins, personality descriptions, abilities, traits and biography fragments. Keep generation deterministic so an ID always resolves to the same identity.
+## Files
+`index.html`, `style.css`, `script.js`, `README.md`
